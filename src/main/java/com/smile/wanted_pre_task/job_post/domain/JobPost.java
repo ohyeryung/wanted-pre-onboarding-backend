@@ -1,6 +1,7 @@
 package com.smile.wanted_pre_task.job_post.domain;
 
 import com.smile.wanted_pre_task.company.domain.Company;
+import com.smile.wanted_pre_task.job_post.dto.JobPostUpdateReqDto;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -43,5 +44,13 @@ public class JobPost {
 
     public JobPost() {
 
+    }
+
+    public void update(JobPostUpdateReqDto jobPostUpdateReqDto) {
+        this.title = jobPostUpdateReqDto.getTitle();
+        this.position = jobPostUpdateReqDto.getPosition();
+        this.reward = jobPostUpdateReqDto.getReward();
+        this.content = jobPostUpdateReqDto.getContent();
+        this.stack = jobPostUpdateReqDto.getStack();
     }
 }
