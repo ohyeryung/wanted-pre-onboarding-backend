@@ -1,0 +1,73 @@
+package com.smile.wanted_pre_task.job_post.service;
+
+import com.smile.wanted_pre_task.company.domain.Company;
+import com.smile.wanted_pre_task.company.repository.CompanyRepository;
+import com.smile.wanted_pre_task.job_post.domain.JobPost;
+import com.smile.wanted_pre_task.job_post.dto.JobPostCommand;
+import com.smile.wanted_pre_task.job_post.dto.JobPostResDto;
+import com.smile.wanted_pre_task.job_post.dto.JobPostUpdateReqDto;
+import com.smile.wanted_pre_task.job_post.repository.JobPostRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class JobPostServiceImpl implements JobPostService {
+
+    private final JobPostRepository jobPostRepository;
+    private final CompanyRepository companyRepository;
+    @Override
+    public void posting(JobPostCommand jobPostCommand) {
+        // 1. 회사 ID 검증 (게시글이 등록 가능한 회사인지 유효성 체크) - 토큰이 없으니 회사Id를 함께 전달
+        Company company = companyIdChk(jobPostCommand.getCompanyId());
+        JobPost jobPost = jobPostCommand.toRegisterEntity(company);
+        // 2. DB 저장
+        jobPostRepository.save(jobPost);
+    }
+
+    @Override
+    public List<JobPostResDto> listing() {
+        List<JobPost> jobPosts = jobPostRepository.findAll();
+        return jobPosts.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public JobPostUpdateReqDto updatePost(Long postId, JobPostUpdateReqDto jobPostUpdateReqDto) {
+        JobPost jobPost = jobPostRepository.findById(postId).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 채용 공고 ID입니다.")
+        );
+        jobPost.update(jobPostUpdateReqDto);
+        return new JobPostUpdateReqDto(jobPost);
+    }
+
+    @Override
+    public void deletePost(Long postId) {
+        jobPostRepository.deleteById(postId);
+    }
+
+    private JobPostResDto convertToDto(JobPost jobPost) {
+        return new JobPostResDto(
+                jobPost.getPostId(),
+                jobPost.getCompany().getCompanyName(),
+                jobPost.getCompany().getNation(),
+                jobPost.getCompany().getRegion(),
+                jobPost.getPosition(),
+                jobPost.getReward(),
+                jobPost.getStack()
+        );
+    }
+
+
+    public Company companyIdChk(long companyId) {
+        return companyRepository.findById(companyId).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 회사 ID입니다.")
+        );
+    }
+}
