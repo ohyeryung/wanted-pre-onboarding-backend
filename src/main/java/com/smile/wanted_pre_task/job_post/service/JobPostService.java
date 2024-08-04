@@ -1,17 +1,17 @@
 package com.smile.wanted_pre_task.job_post.service;
 
-import com.smile.wanted_pre_task.job_post.dto.JobPostCommand;
-import com.smile.wanted_pre_task.job_post.dto.JobPostResDto;
-import com.smile.wanted_pre_task.job_post.dto.JobPostUpdateReqDto;
+import com.smile.wanted_pre_task.job_post.dto.*;
 
 import java.util.List;
 
 public interface JobPostService {
-    void posting(JobPostCommand jobPostCommand);
+    void posting(JobPostDto.Post jobPost);
 
-    List<JobPostResDto> listing();
+    List<JobPostDto.Response> listing();
 
-    JobPostUpdateReqDto updatePost(Long postId, JobPostUpdateReqDto jobPostUpdateReqDto);
+    JobPostDto.Update updatePost(Long postId, JobPostDto.Update jobPostUpdateReqDto);
 
     void deletePost(Long postId);
+
+    JobPostDetail getDetail(Long postId);
 }
