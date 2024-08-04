@@ -1,7 +1,7 @@
 package com.smile.wanted_pre_task.job_post.domain;
 
 import com.smile.wanted_pre_task.company.domain.Company;
-import com.smile.wanted_pre_task.job_post.dto.JobPostDto;
+import com.smile.wanted_pre_task.config.Timestamped;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "TB_JOBPOST")
 @Builder
 @Getter
-public class JobPost {
+public class JobPost extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +46,7 @@ public class JobPost {
 
     }
 
-    public void update(JobPostDto.Update jobPostUpdateReqDto) {
+    public void update(JobPost jobPostUpdateReqDto) {
         this.title = jobPostUpdateReqDto.getTitle();
         this.position = jobPostUpdateReqDto.getPosition();
         this.reward = jobPostUpdateReqDto.getReward();
