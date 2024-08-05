@@ -1,7 +1,7 @@
 package com.smile.wanted_pre_task.job_post.controller;
 
 
-import com.smile.wanted_pre_task.global.ResponseMessage;
+import com.smile.wanted_pre_task.global.exception.ResponseMessage;
 import com.smile.wanted_pre_task.job_post.dto.*;
 import com.smile.wanted_pre_task.job_post.service.JobPostService;
 import lombok.RequiredArgsConstructor;
