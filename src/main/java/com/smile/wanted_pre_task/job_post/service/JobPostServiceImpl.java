@@ -4,7 +4,8 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.smile.wanted_pre_task.company.domain.Company;
 import com.smile.wanted_pre_task.company.repository.CompanyRepository;
-import com.smile.wanted_pre_task.global.ResponseMessage;
+import com.smile.wanted_pre_task.global.exception.AlreadyAppliedException;
+import com.smile.wanted_pre_task.global.exception.ResponseMessage;
 import com.smile.wanted_pre_task.job_post.domain.JobPost;
 import com.smile.wanted_pre_task.job_post.dto.*;
 import com.smile.wanted_pre_task.job_post.repository.JobPostRepository;
@@ -166,7 +167,7 @@ public class JobPostServiceImpl implements JobPostService {
         JobPost jobPost = getJobPost(postId);
 
         if (member.getJobPost() != null && member.getJobPost().getPostId().equals(postId)) {
-            throw new IllegalArgumentException("이미 지원한 채용 공고 입니다.");
+            throw new AlreadyAppliedException();
         }
 
         jobPost.addMember(member);
@@ -181,7 +182,6 @@ public class JobPostServiceImpl implements JobPostService {
                 jobPost.getCompany().getRegion()
         );
     }
-
 
     private JobPostDto.Response convertToDto(JobPost jobPost) {
         return new JobPostDto.Response(
@@ -205,7 +205,7 @@ public class JobPostServiceImpl implements JobPostService {
 
     private JobPost getJobPost(Long postId) {
         return jobPostRepository.findById(postId).orElseThrow(
-                () -> new NoSuchElementException(ResponseMessage.JOBPOST_NOT_FOUND)
+                () -> new NoSuchElementException(ResponseMessage.JOB_POST_NOT_FOUND)
         );
     }
 

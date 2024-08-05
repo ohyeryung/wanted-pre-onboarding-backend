@@ -1,6 +1,6 @@
 package com.smile.wanted_pre_task.job_post.dto;
 
-import com.smile.wanted_pre_task.config.CalculateTime;
+import com.smile.wanted_pre_task.global.config.CalculateTime;
 import com.smile.wanted_pre_task.job_post.domain.JobPost;
 import lombok.Getter;
 
