@@ -1,4 +1,4 @@
-package com.smile.wanted_pre_task.config;
+package com.smile.wanted_pre_task.global.config;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

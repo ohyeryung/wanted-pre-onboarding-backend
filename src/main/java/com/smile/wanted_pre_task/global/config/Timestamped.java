@@ -1,4 +1,4 @@
-package com.smile.wanted_pre_task.config;
+package com.smile.wanted_pre_task.global.config;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
