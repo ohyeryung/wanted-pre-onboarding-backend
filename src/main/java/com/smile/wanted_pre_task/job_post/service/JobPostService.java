@@ -1,11 +1,12 @@
 package com.smile.wanted_pre_task.job_post.service;
 
 import com.smile.wanted_pre_task.job_post.dto.*;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface JobPostService {
-    void posting(JobPostDto.Post jobPost);
+    JobPostDto.Response posting(JobPostDto.Post jobPost);
 
     List<JobPostDto.Response> listing();
 
@@ -14,4 +15,8 @@ public interface JobPostService {
     void deletePost(Long postId);
 
     JobPostDetail getDetail(Long postId);
+
+    List<JobPostDto.Response> search(String query, Pageable pageable);
+
+    JobPostDto.Apply apply(Long postId, Long memberId);
 }
