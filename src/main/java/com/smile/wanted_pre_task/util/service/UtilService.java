@@ -24,22 +24,24 @@ public class UtilService {
     private final CompanyRepository companyRepository;
     private final JobPostRepository jobPostRepository;
 
+    @Transactional
     public Member getMember(UUID memberId) {
         return memberRepository.findById(memberId).orElseThrow(
                 () -> new NoSuchElementException(ResponseMessage.MEMBER_NOT_FOUND)
         );
     }
 
+    @Transactional
     public JobPost getJobPost(Long postId) {
         return jobPostRepository.findById(postId).orElseThrow(
                 () -> new NoSuchElementException(ResponseMessage.JOB_POST_NOT_FOUND)
         );
     }
 
+    @Transactional
     public Company toEntity(String companyId) {
         Company company = new Company();
         company.setCompanyId(UUID.fromString(companyId));// String을 UUID로 변환
-        log.info("========================================");
         log.info("companyId : {}", company.getCompanyId());
         return company;
     }
