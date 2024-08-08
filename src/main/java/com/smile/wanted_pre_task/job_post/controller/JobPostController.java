@@ -54,9 +54,4 @@ public class JobPostController {
         return ResponseEntity.ok(jobPostService.getDetail(postId));
     }
 
-    @RequestMapping(value = "/apply", method = RequestMethod.POST)
-    public ResponseEntity<JobPostDto.Apply> apply(@Validated @RequestBody JobPostDto.Apply apply) {
-        return ResponseEntity.ok(jobPostService.apply(apply.getPostId(), apply.getMemberId()));
-    }
-
 }
