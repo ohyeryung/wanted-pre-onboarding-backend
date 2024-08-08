@@ -1,5 +1,6 @@
 package com.smile.wanted_pre_task.job_post.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.smile.wanted_pre_task.company.domain.Company;
 import com.smile.wanted_pre_task.global.config.CalculateTime;
 import com.smile.wanted_pre_task.job_post.domain.JobPost;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class JobPostDto {
 
@@ -22,12 +24,12 @@ public class JobPostDto {
     public static class Post {
         
         @NotNull(message = "회사 ID는 필수 입력 값입니다.")
-        private Long companyId;
+        @JsonFormat(shape = JsonFormat.Shape.STRING)
+        private String companyId;
         @NotBlank(message = "제목은 필수 입력 값입니다.")
         private String title;
         @NotBlank(message = "채용 포지션은 필수 입력 값입니다.")
         private String position;
-
         @NotNull(message = "채용 보상금은 필수 입력 값입니다.")
         private int reward;
         private String content;
@@ -81,7 +83,6 @@ public class JobPostDto {
         private String title;
         @NotBlank(message = "채용 포지션은 필수 입력 값입니다.")
         private String position;
-
         @NotNull(message = "채용 보상금은 필수 입력 값입니다.")
         private int reward;
         private String content;
@@ -104,20 +105,6 @@ public class JobPostDto {
                     .content(content)
                     .stack(stack)
                     .build();
-        }
-    }
-
-    @Getter
-    @NoArgsConstructor
-    public static class Apply {
-        @NotNull(message = "채용 공고 ID는 필수 입력 값입니다.")
-        private Long postId;
-        @NotNull(message = "회원 ID는 필수 입력 값입니다.")
-        private Long memberId;
-
-        public Apply(Long postId, Long memberId) {
-            this.postId = postId;
-            this.memberId = memberId;
         }
     }
 }
