@@ -1,12 +1,13 @@
 package com.smile.wanted_pre_task.member.domain;
 
-import com.smile.wanted_pre_task.job_post.domain.JobPost;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "TB_MEMBER")
@@ -17,19 +18,14 @@ import javax.persistence.*;
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MEMBER_ID")
-    private Long memberId;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "MEMBER_ID", columnDefinition = "BINARY(16)")
+    private UUID memberId;
     @Column(name = "MEMBER_EMAIL")
     private String memberEmail;
     @Column(name = "PASSWORD")
     private String password;
-    @ManyToOne
-    @JoinColumn(name = "POST_ID")
-    private JobPost jobPost;
 
-    public void setJobPost(JobPost jobPost) {
-        this.jobPost = jobPost;
-    }
 
 }
