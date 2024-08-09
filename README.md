@@ -54,8 +54,25 @@ wanted-pre-onboarding-backend
 
 ### ERD
 
-### API
+![Wanted_pre_onboarding_ERD](https://github.com/user-attachments/assets/17882f89-a526-4f5b-bfc4-31b017614027)
 
-### 구현 방법 및 이유
 
-### 데모 영상 링크
+### API 명세
+[API 명세서](https://documenter.getpostman.com/view/20456478/2sA3s3Fqkc)
+
+### 기술 스택
+<img src= "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white" >
+<img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"> 
+<img src="https://img.shields.io/badge/Springboot-6DB33F?style=for-the-badge&logo=Springboot&logoColor=white">
+<img src="https://img.shields.io/badge/Springjpa-4FC08D?style=for-the-badge&logo=jpa&logoColor=white"> 
+<img  src="https://img.shields.io/badge/QueryDSL-4695EB?style=for-the-badge&logo=&logoColor=white">
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
+<br>
+<img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
+<img  src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white">
+
+
+### 구현 방법 및 선정 이유
+> 1. 기업과 회원의 ID 값을 UUID로 설정
+>    2. 데이터의 고유성을 보장하기 위해 선택
+>    3. 기업의 경우에는 추후 기업 코드를 생성해 분류하는 것도 좋겠다는 생각이 들었음
