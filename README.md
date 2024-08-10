@@ -44,16 +44,18 @@ wanted-pre-onboarding-backend
 
 - ORM 사용하여 구현
 - RDBMS 사용 (SQLite, PostgreSQL,MySql 등)
+
 ---
 
-### 프로젝트 환경
+## 프로젝트
+
+### 개발 환경
 
 - Java 11
 - Gradle 8.8
 - SpringBoot 2.7.4
 
 ### ERD
-
 ![Wanted_pre_onboarding_ERD](https://github.com/user-attachments/assets/17882f89-a526-4f5b-bfc4-31b017614027)
 
 
@@ -74,7 +76,18 @@ wanted-pre-onboarding-backend
 <img src= "https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white">
 </p>
 
-### 구현 방법 및 선정 이유
-> 1. 기업과 회원의 ID 값을 UUID로 설정
->    2. 데이터의 고유성을 보장하기 위해 선택
->    3. 기업의 경우에는 추후 기업 코드를 생성해 분류하는 것도 좋겠다는 생각이 들었음
+## 느낀 점
+
+> ### 구현 방법 및 선정 이유
+1. 기업과 회원의 ID 값을 UUID로 설정
+ - 데이터의 고유성을 보장하기 위해 선택
+ - 기업의 경우에는 추후 기업 코드를 생성해 분류하는 것도 좋겠다는 생각이 들었음
+   
+ 2. 채용 공고 상세 조회 시 해당 기업의 공고 글 List 함께 반환
+ - 상세 조회 중인 채용 공고를 제외한 나머지 공고 글들의 List가 반환됨
+ - 조회 되는 채용 공고글이 중복되지 않게 하기 위함
+   
+ 3. 검색 기능 구현 시 querydsl 활용
+ - 조건을 검에 있어 유연하게 수정이 가능하기에 선택
+ - 컴파일 시점에 오류를 검출할 수 있기에 코드의 안정성 측면에서 효율적
+   
